@@ -47,6 +47,14 @@ body {
     padding-top: 80px; /* Add padding to body to avoid content being hidden by fixed header */
 }
 
+/* Transitions for Interactive Elements (General) */
+button, .btn-primary, .btn-secondary, .download-btn, .social-btn, .slider-btn,
+header nav a, .footer-column ul li a, .theme-switcher, .hamburger-icon-placeholder,
+.faq-question, .modal p a, .close-button, .step-card, .feature-card, .social-btn {
+    transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
 header {
     display: flex;
     justify-content: space-between;
@@ -86,6 +94,13 @@ nav a {
     color: var(--text-primary-color);
     font-weight: 500;
 }
+nav a:hover {
+    color: var(--primary-color);
+}
+body.dark-theme nav a:hover {
+    color: var(--dark-primary-color);
+}
+
 
 .auth-buttons button {
     margin-left: var(--spacing-s); /* e.g., 16px */
@@ -100,15 +115,34 @@ nav a {
     background-color: var(--secondary-color);
     color: #fff; /* White text for contrast on secondary color */
 }
+.login-btn:hover {
+    background-color: #1976D2; /* Darker blue */
+    transform: scale(1.03);
+}
+body.dark-theme .login-btn:hover {
+    background-color: #42A5F5; /* Lighter blue for dark theme hover */
+}
+
 
 .register-btn {
     background-color: var(--primary-color);
     color: #fff; /* White text for contrast on primary color */
 }
+.register-btn:hover {
+    background-color: #388E3C; /* Darker green */
+    transform: scale(1.03);
+}
+body.dark-theme .register-btn:hover {
+    background-color: #66BB6A; /* Lighter green for dark theme hover */
+}
+
 
 .theme-switcher {
     cursor: pointer;
     margin-left: var(--spacing-m);
+}
+.theme-switcher:hover {
+    opacity: 0.7;
 }
 
 /* Hero Section Styles */
@@ -174,12 +208,30 @@ nav a {
     background-color: var(--primary-color);
     color: #fff;
 }
+.btn-primary:hover {
+    background-color: #388E3C; /* Darker green */
+    transform: scale(1.03);
+}
+body.dark-theme .btn-primary:hover {
+    background-color: #66BB6A; /* Lighter green */
+}
+
 
 .btn-secondary {
     background-color: transparent;
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
 }
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: scale(1.03);
+}
+body.dark-theme .btn-secondary:hover {
+    background-color: var(--dark-primary-color);
+    color: var(--dark-text-primary-color); /* Or specific if --dark-primary-color is light */
+}
+
 
 .hero-visual {
     flex: 1;
@@ -224,6 +276,14 @@ nav a {
     max-width: 350px; /* Max width for cards */
     text-align: center;
 }
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+body.dark-theme .step-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
 
 .step-icon {
     font-size: 48px; /* Placeholder size */
@@ -290,6 +350,13 @@ nav a {
     box-shadow: var(--shadow-light);
     text-align: left; /* Content within card is left-aligned */
 }
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+body.dark-theme .feature-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
 
 .feature-icon {
     font-size: 36px; /* Placeholder size */
@@ -331,35 +398,15 @@ body.dark-theme {
 }
 
 /* Ensure elements correctly adapt: */
-/* Most elements should adapt automatically if they use the variables.
-   We need to check specific cases like borders or elements not using variables. */
-
 body.dark-theme .logo {
-    color: var(--dark-primary-color); /* Ensure logo uses the dark theme primary color */
-}
-
-body.dark-theme .login-btn {
-    /* Assuming login-btn uses secondary-color, it will adapt.
-       If it used a hardcoded color, it would need an override here. */
-}
-
-body.dark-theme .register-btn {
-    /* Assuming register-btn uses primary-color, it will adapt. */
-}
-
-body.dark-theme .btn-primary {
-    background-color: var(--dark-primary-color);
-    color: var(--dark-text-primary-color); /* Or #000 or #fff depending on contrast with dark-primary-color */
-}
-
-body.dark-theme .btn-secondary {
     color: var(--dark-primary-color);
-    border-color: var(--dark-primary-color);
 }
+body.dark-theme .btn-primary { /* Already has specific hover */ }
+body.dark-theme .btn-secondary { /* Already has specific hover */ }
 
 
 body.dark-theme footer {
-    border-top-color: var(--footer-border-color, #424242); /* Use variable or fallback */
+    border-top-color: var(--footer-border-color, #424242);
 }
 
 body.dark-theme .footer-bottom {
@@ -383,19 +430,18 @@ body.dark-theme .footer-bottom {
 
 .modal-content {
     background-color: var(--background-color);
-    color: var(--text-primary-color); /* Ensure text color respects theme */
+    color: var(--text-primary-color);
     margin: auto;
     padding: var(--spacing-l);
     border-radius: var(--border-radius-cards);
-    box-shadow: var(--shadow-light); /* Or var(--shadow-dark) for dark theme */
+    box-shadow: var(--shadow-light);
     width: 90%;
     max-width: 500px;
-    position: relative; /* For positioning the close button */
+    position: relative;
 }
 
-/* Dark theme adjustments for modal */
 body.dark-theme .modal-content {
-    background-color: var(--dark-card-color); /* Use card color for dark theme modal bg */
+    background-color: var(--dark-card-color);
     color: var(--dark-text-primary-color);
     box-shadow: var(--shadow-dark);
 }
@@ -403,7 +449,7 @@ body.dark-theme .modal-content {
 
 .close-button {
     color: var(--text-secondary-color);
-    float: right; /* Old school, but simple for a span */
+    float: right;
     font-size: 28px;
     font-weight: bold;
 }
@@ -414,8 +460,6 @@ body.dark-theme .close-button {
 .close-button:hover,
 .close-button:focus {
     color: var(--text-primary-color);
-    /* In CSS, you can't directly nest like SASS/LESS for body.dark-theme & */
-    /* This will be handled by a separate rule for dark theme if needed or rely on variable change */
     text-decoration: none;
     cursor: pointer;
 }
@@ -435,22 +479,22 @@ body.dark-theme .close-button:focus {
 
 .modal form input[type="email"],
 .modal form input[type="password"],
-.modal form input[type="text"] { /* Add other input types if needed */
+.modal form input[type="text"] {
     width: 100%;
     padding: var(--spacing-s);
     margin-bottom: var(--spacing-s);
-    border: 1px solid #ccc; /* Adjust border color for themes */
-    border-radius: var(--border-radius-cards); /* Or a smaller radius for inputs */
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-cards);
     box-sizing: border-box;
-    background-color: var(--background-color); /* Theme aware */
-    color: var(--text-primary-color); /* Theme aware */
+    background-color: var(--background-color);
+    color: var(--text-primary-color);
 }
 body.dark-theme .modal form input[type="email"],
 body.dark-theme .modal form input[type="password"],
 body.dark-theme .modal form input[type="text"] {
     background-color: var(--dark-background-color);
     color: var(--dark-text-primary-color);
-    border-color: #555; /* Darker border for dark theme */
+    border-color: #555;
 }
 
 
@@ -458,11 +502,11 @@ body.dark-theme .modal form input[type="text"] {
     margin-right: var(--spacing-xs);
 }
 
-.modal form div { /* For checkbox groups */
+.modal form div {
     margin-bottom: var(--spacing-s);
     font-size: 0.9em;
 }
-.modal form div label { /* Labels next to checkboxes */
+.modal form div label {
     font-weight: normal;
     display: inline;
 }
@@ -473,7 +517,6 @@ body.dark-theme .modal form input[type="text"] {
     padding: var(--spacing-s);
     margin-top: var(--spacing-m);
 }
-/* .btn-primary style is already defined */
 
 .social-login {
     text-align: center;
@@ -489,24 +532,39 @@ body.dark-theme .modal form input[type="text"] {
     padding: var(--spacing-s);
     margin-bottom: var(--spacing-s);
     border-radius: var(--border-radius-buttons);
-    border: 1px solid #ccc; /* Adjust for themes */
+    border: 1px solid #ccc;
     cursor: pointer;
     font-weight: bold;
 }
 .social-btn.google {
-    background-color: #db4437; /* Example color */
+    background-color: #db4437;
     color: white;
+}
+.social-btn.google:hover {
+    background-color: #c23321;
+    transform: scale(1.02);
 }
 .social-btn.facebook {
-    background-color: #3b5998; /* Example color */
+    background-color: #3b5998;
     color: white;
 }
+.social-btn.facebook:hover {
+    background-color: #2d4373;
+    transform: scale(1.02);
+}
+
 body.dark-theme .social-btn {
     border-color: #555;
 }
+body.dark-theme .social-btn.google:hover {
+    background-color: #e64a3e;
+}
+body.dark-theme .social-btn.facebook:hover {
+    background-color: #4e69a2;
+}
 
 
-.modal p { /* For links like "Already registered?" */
+.modal p {
     text-align: center;
     margin-top: var(--spacing-m);
     font-size: 0.9em;
@@ -527,18 +585,453 @@ body.dark-theme .hero-content h1 span:nth-child(1) { color: var(--dark-primary-c
 body.dark-theme .hero-content h1 span:nth-child(2) { color: var(--dark-secondary-color); }
 body.dark-theme .hero-content h1 span:nth-child(3) { color: var(--dark-accent-color); }
 
+
+/* Testimonial Section Styles */
+.testimonial-section {
+    padding: var(--spacing-xxl) var(--spacing-l);
+    text-align: center;
+    background-color: var(--card-color);
+}
+body.dark-theme .testimonial-section {
+    background-color: var(--dark-card-color);
+}
+
+.testimonial-section h2 {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-primary-color);
+}
+body.dark-theme .testimonial-section h2 {
+    color: var(--dark-text-primary-color);
+}
+
+.testimonial-slider-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.testimonial-slider {
+    display: flex;
+}
+
+.testimonial-card {
+    background-color: var(--background-color);
+    padding: var(--spacing-l);
+    border-radius: var(--border-radius-cards);
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    min-width: 100%;
+    box-sizing: border-box;
+    display: none;
+}
+body.dark-theme .testimonial-card {
+    background-color: var(--dark-background-color);
+    box-shadow: var(--shadow-dark);
+}
+
+.testimonial-card.active {
+    display: block;
+}
+
+.testimonial-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 auto var(--spacing-m);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #777;
+}
+body.dark-theme .testimonial-image {
+    background-color: #555;
+    color: #aaa;
+}
+
+.testimonial-card h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-primary-color);
+}
+body.dark-theme .testimonial-card h3 {
+    color: var(--dark-text-primary-color);
+}
+
+.testimonial-rating {
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-s);
+}
+body.dark-theme .testimonial-rating {
+    color: var(--dark-accent-color);
+}
+
+.testimonial-text {
+    font-size: 15px;
+    color: var(--text-secondary-color);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-s);
+}
+body.dark-theme .testimonial-text {
+    color: var(--dark-text-secondary-color);
+}
+
+.testimonial-date {
+    font-size: 0.8em;
+    color: var(--text-secondary-color);
+    font-style: italic;
+}
+body.dark-theme .testimonial-date {
+    color: var(--dark-text-secondary-color);
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.2);
+    color: white;
+    border: none;
+    padding: var(--spacing-s) var(--spacing-xs);
+    border-radius: var(--border-radius-buttons);
+    cursor: pointer;
+    z-index: 10;
+    font-size: 24px;
+}
+.slider-btn:hover {
+    background-color: rgba(0,0,0,0.4);
+}
+body.dark-theme .slider-btn {
+    background-color: rgba(255,255,255,0.2);
+    color: var(--dark-text-primary-color);
+}
+body.dark-theme .slider-btn:hover {
+    background-color: rgba(255,255,255,0.4);
+}
+
+
+.prev-btn {
+    left: var(--spacing-s);
+}
+
+.next-btn {
+    right: var(--spacing-s);
+}
+
+/* General Section Styling */
+section {
+    padding: var(--spacing-xxl) var(--spacing-l);
+    text-align: center;
+}
+section h2 {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-primary-color);
+}
+body.dark-theme section h2 {
+    color: var(--dark-text-primary-color);
+}
+
+
+/* App Preview Section */
+.app-preview-section {
+    background-color: var(--background-color);
+}
+body.dark-theme .app-preview-section {
+    background-color: var(--dark-background-color);
+}
+.app-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--spacing-l);
+}
+.app-screenshots {
+    display: flex;
+    gap: var(--spacing-m);
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1 1 50%;
+}
+.screenshot-mockup {
+    background-color: #e0e0e0;
+    color: #777;
+    padding: var(--spacing-xl) var(--spacing-m);
+    border-radius: var(--border-radius-cards);
+    min-width: 150px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body.dark-theme .screenshot-mockup {
+    background-color: #333;
+    color: #aaa;
+}
+.app-features-list {
+    flex: 1 1 40%;
+    text-align: left;
+}
+.app-features-list h3 {
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-s);
+    font-size: 20px;
+    color: var(--text-primary-color);
+}
+body.dark-theme .app-features-list h3 {
+    color: var(--dark-text-primary-color);
+}
+.app-features-list ul {
+    list-style: disc;
+    padding-left: var(--spacing-m);
+    margin-bottom: var(--spacing-m);
+}
+.app-features-list li {
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-secondary-color);
+}
+body.dark-theme .app-features-list li {
+    color: var(--dark-text-secondary-color);
+}
+.download-btn {
+    background-color: var(--text-primary-color);
+    color: var(--background-color);
+    border: none;
+    padding: var(--spacing-s) var(--spacing-m);
+    margin: var(--spacing-xs);
+    border-radius: var(--border-radius-buttons);
+    cursor: pointer;
+}
+.download-btn:hover {
+    background-color: #555;
+    transform: scale(1.03);
+}
+body.dark-theme .download-btn {
+    background-color: var(--dark-text-primary-color);
+    color: var(--dark-background-color);
+}
+body.dark-theme .download-btn:hover {
+    background-color: #ccc;
+}
+
+.qr-code-placeholder {
+    width: 100px; height: 100px; background-color: #e0e0e0; color: #777;
+    margin-top: var(--spacing-s); display: flex; align-items: center; justify-content: center;
+    border-radius: var(--border-radius-cards);
+}
+body.dark-theme .qr-code-placeholder {
+    background-color: #333;
+    color: #aaa;
+}
+
+/* Community Numbers Section */
+.community-numbers-section {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.community-numbers-section h2 {
+    color: #fff;
+}
+.community-stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: var(--spacing-m);
+    margin-bottom: var(--spacing-xl);
+}
+.community-stat-item {
+    text-align: center;
+    min-width: 150px;
+}
+.community-stat-item .number {
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+    font-family: var(--font-heading);
+}
+.community-stat-item .description {
+    font-size: 1em;
+}
+.map-placeholder {
+    background-color: rgba(255,255,255,0.2);
+    color: #eee;
+    padding: var(--spacing-xxl);
+    border-radius: var(--border-radius-cards);
+    max-width: 800px;
+    margin: 0 auto;
+}
+body.dark-theme .community-numbers-section {
+    background-color: var(--dark-primary-color);
+    color: var(--dark-text-primary-color);
+}
+body.dark-theme .community-numbers-section h2 {
+     color: var(--dark-text-primary-color);
+}
+body.dark-theme .map-placeholder {
+    background-color: rgba(0,0,0,0.2);
+    color: var(--dark-text-secondary-color);
+}
+
+
+/* FAQ Section */
+.faq-section {
+    background-color: var(--background-color);
+}
+body.dark-theme .faq-section {
+    background-color: var(--dark-background-color);
+}
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
+    text-align: left;
+}
+.faq-item {
+    margin-bottom: var(--spacing-m);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius-cards);
+}
+body.dark-theme .faq-item {
+    border-color: #333;
+}
+.faq-question {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    padding: var(--spacing-m);
+    cursor: pointer;
+    margin: 0;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-cards) var(--border-radius-cards) 0 0;
+    color: var(--text-primary-color);
+}
+body.dark-theme .faq-question {
+    background-color: var(--dark-card-color);
+    color: var(--dark-text-primary-color);
+}
+.faq-question:hover {
+    background-color: #e9e9e9;
+}
+.faq-question.active:hover {
+    background-color: var(--card-color);
+}
+body.dark-theme .faq-question:hover {
+    background-color: #2c2c2c;
+}
+body.dark-theme .faq-question.active:hover {
+    background-color: var(--dark-card-color);
+}
+
+
+.faq-answer {
+    padding: var(--spacing-m);
+    background-color: var(--background-color);
+    color: var(--text-secondary-color);
+    border-top: 1px solid #e0e0e0;
+    border-radius: 0 0 var(--border-radius-cards) var(--border-radius-cards);
+}
+body.dark-theme .faq-answer {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-secondary-color);
+    border-top-color: #333;
+}
+.faq-answer p {
+    margin: 0;
+    line-height: 1.6;
+}
+.faq-contact-cta {
+    margin-top: var(--spacing-l);
+}
+
+/* Final CTA Section */
+.final-cta-section {
+    background-color: var(--card-color);
+}
+body.dark-theme .final-cta-section {
+    background-color: var(--dark-card-color);
+}
+.final-cta-section h2 {
+    margin-bottom: var(--spacing-s);
+}
+.final-cta-section p {
+    margin-bottom: var(--spacing-l);
+    font-size: 1.1em;
+    color: var(--text-secondary-color);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+body.dark-theme .final-cta-section p {
+    color: var(--dark-text-secondary-color);
+}
+.final-cta-buttons button {
+    margin: var(--spacing-xs) var(--spacing-s);
+}
+
+
 body.dark-theme .hero-visual {
     background-color: var(--hero-visual-bg, #333333);
     color: var(--dark-text-secondary-color);
 }
 
+/* Mobile Navigation Menu - Active State */
+header nav.mobile-nav-active {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    box-shadow: var(--shadow-light);
+    padding: var(--spacing-s) 0;
+    z-index: 999;
+}
+
+header nav.mobile-nav-active li {
+    margin: 0;
+    width: 100%;
+}
+
+header nav.mobile-nav-active li a {
+    display: block;
+    padding: var(--spacing-m);
+    text-align: center;
+    border-bottom: 1px solid var(--card-color);
+    color: var(--text-primary-color);
+}
+header nav.mobile-nav-active li a:hover {
+    background-color: var(--card-color);
+}
+header nav.mobile-nav-active li:last-child a {
+    border-bottom: none;
+}
+
+body.dark-theme header nav.mobile-nav-active {
+    background-color: var(--dark-background-color);
+    box-shadow: var(--shadow-dark);
+}
+body.dark-theme header nav.mobile-nav-active li a {
+    border-bottom-color: var(--dark-card-color);
+    color: var(--dark-text-primary-color);
+}
+body.dark-theme header nav.mobile-nav-active li a:hover {
+    background-color: var(--dark-card-color);
+}
+
+
 /* How it works section */
 body.dark-theme .how-it-works-section {
-    background-color: var(--dark-card-color); /* Section itself uses a card-like color in dark */
+    background-color: var(--dark-card-color);
 }
 
 body.dark-theme .step-card {
-    background-color: var(--dark-background-color); /* Cards on the section bg */
+    background-color: var(--dark-background-color);
     box-shadow: var(--shadow-dark);
 }
 
@@ -570,7 +1063,7 @@ body.dark-theme .feature-icon {
 footer {
     background-color: var(--card-color);
     color: var(--text-secondary-color);
-    padding: var(--spacing-xl) var(--spacing-l); /* e.g., 48px 32px */
+    padding: var(--spacing-xl) var(--spacing-l);
     border-top: 1px solid #e0e0e0;
 }
 
@@ -589,7 +1082,7 @@ footer {
 
 .footer-logo {
     font-family: var(--font-heading);
-    font-size: var(--spacing-m); /* Slightly smaller than header */
+    font-size: var(--spacing-m);
     font-weight: bold;
     color: var(--primary-color);
     margin-bottom: var(--spacing-s);
@@ -631,13 +1124,17 @@ footer {
     text-decoration: none;
     color: var(--text-secondary-color);
     display: block;
-    padding: var(--spacing-xs) 0; /* 8px 0 */
+    padding: var(--spacing-xs) 0;
     font-size: 0.9em;
 }
 
 .footer-column ul li a:hover {
     color: var(--primary-color);
 }
+body.dark-theme .footer-column ul li a:hover {
+    color: var(--dark-primary-color);
+}
+
 
 .footer-social {
     text-align: center;
@@ -645,9 +1142,13 @@ footer {
 }
 
 .footer-social span {
-    margin: 0 var(--spacing-xs); /* 0 8px */
+    margin: 0 var(--spacing-xs);
     cursor: pointer;
-    font-size: 1.2em; /* Placeholder for icon size */
+    font-size: 1.2em;
+}
+.footer-social span:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
 }
 
 .footer-bottom {
@@ -660,4 +1161,20 @@ footer {
 
 .footer-bottom p {
     margin: 0 0 var(--spacing-xs) 0;
+}
+
+/* Scroll Animation CSS */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hamburger-icon-placeholder:hover {
+    opacity: 0.7;
 }
