@@ -1,0 +1,663 @@
+/* Import Google Fonts here if needed, e.g.: */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;700&display=swap'); */
+
+:root {
+    /* Light Theme */
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --accent-color: #FF9800;
+    --background-color: #FFFFFF;
+    --card-color: #F5F5F5;
+    --text-primary-color: #212121;
+    --text-secondary-color: #757575;
+
+    /* Dark Theme (applied via class) */
+    --dark-primary-color: #81C784;
+    --dark-secondary-color: #64B5F6;
+    --dark-accent-color: #FFB74D;
+    --dark-background-color: #121212;
+    --dark-card-color: #1E1E1E;
+    --dark-text-primary-color: #FFFFFF;
+    --dark-text-secondary-color: #B0B0B0;
+
+    /* Font Families */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Design Tokens */
+    --border-radius-cards: 8px;
+    --border-radius-buttons: 20px;
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-dark: 0 2px 4px rgba(0,0,0,0.4);
+    --spacing-unit: 8px;
+    --spacing-xs: var(--spacing-unit); /* 8px */
+    --spacing-s: calc(var(--spacing-unit) * 2); /* 16px */
+    --spacing-m: calc(var(--spacing-unit) * 3); /* 24px */
+    --spacing-l: calc(var(--spacing-unit) * 4); /* 32px */
+    --spacing-xl: calc(var(--spacing-unit) * 6); /* 48px */
+    --spacing-xxl: calc(var(--spacing-unit) * 8); /* 64px */
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--background-color);
+    color: var(--text-primary-color);
+    line-height: 1.6;
+    padding-top: 80px; /* Add padding to body to avoid content being hidden by fixed header */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-s) var(--spacing-l); /* e.g., 16px 32px */
+    background-color: var(--background-color);
+    color: var(--text-primary-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--shadow-light);
+    box-sizing: border-box; /* Ensure padding doesn't add to width */
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: var(--spacing-m); /* e.g., 24px */
+    font-weight: bold;
+    color: var(--primary-color); /* Light theme primary for logo text */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-left: var(--spacing-m); /* e.g., 24px */
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-primary-color);
+    font-weight: 500;
+}
+
+.auth-buttons button {
+    margin-left: var(--spacing-s); /* e.g., 16px */
+    padding: var(--spacing-xs) var(--spacing-s); /* e.g., 8px 16px */
+    border: none;
+    border-radius: var(--border-radius-buttons);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-btn {
+    background-color: var(--secondary-color);
+    color: #fff; /* White text for contrast on secondary color */
+}
+
+.register-btn {
+    background-color: var(--primary-color);
+    color: #fff; /* White text for contrast on primary color */
+}
+
+.theme-switcher {
+    cursor: pointer;
+    margin-left: var(--spacing-m);
+}
+
+/* Hero Section Styles */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: var(--spacing-xxl) var(--spacing-l); /* e.g., 64px 32px */
+    background-color: var(--background-color);
+    min-height: 80vh;
+    text-align: center; /* Default, can be overridden */
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+    text-align: left; /* For side-by-side layout */
+    margin-right: var(--spacing-l); /* Space between content and visual */
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 48px; /* Adjust as needed */
+    font-weight: bold;
+    margin-bottom: var(--spacing-m);
+    line-height: 1.2;
+}
+
+.hero-content h1 span:nth-child(1) { color: var(--primary-color); }
+.hero-content h1 span:nth-child(2) { color: var(--secondary-color); }
+.hero-content h1 span:nth-child(3) { color: var(--accent-color); }
+
+.hero-subheadline {
+    font-size: 18px; /* Adjust as needed */
+    color: var(--text-secondary-color);
+    margin-bottom: var(--spacing-m);
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: flex-start; /* Aligned with left-aligned text */
+    margin-bottom: var(--spacing-l);
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    margin: var(--spacing-xs) var(--spacing-s) var(--spacing-xs) 0; /* e.g. 8px 16px 8px 0 */
+    font-size: 14px;
+    color: var(--text-secondary-color);
+}
+
+.hero-cta-buttons button {
+    padding: var(--spacing-s) var(--spacing-l); /* e.g., 16px 32px */
+    border-radius: var(--border-radius-buttons);
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: var(--spacing-xs);
+    border: 2px solid transparent; /* For consistent sizing */
+}
+
+.btn-primary { /* This might share styles with .register-btn */
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.hero-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px; /* Placeholder height */
+    background-color: #e0e0e0; /* Placeholder background */
+    color: #757575;
+    border-radius: var(--border-radius-cards);
+}
+
+/* How it Works Section Styles */
+.how-it-works-section {
+    padding: var(--spacing-xxl) var(--spacing-l); /* e.g., 64px 32px */
+    text-align: center;
+    background-color: var(--card-color); /* Or a slightly different shade if desired */
+}
+
+.how-it-works-section h2 {
+    font-family: var(--font-heading);
+    font-size: 36px; /* Adjust as needed */
+    margin-bottom: var(--spacing-xl); /* e.g., 48px */
+    color: var(--text-primary-color);
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    gap: var(--spacing-l); /* Space between cards */
+    margin-bottom: var(--spacing-xl);
+}
+
+.step-card {
+    background-color: var(--background-color); /* Cards on slightly different bg */
+    padding: var(--spacing-l); /* e.g., 32px */
+    border-radius: var(--border-radius-cards);
+    box-shadow: var(--shadow-light);
+    flex: 1; /* Allow cards to grow */
+    min-width: 280px; /* Min width before wrapping, adjust as needed */
+    max-width: 350px; /* Max width for cards */
+    text-align: center;
+}
+
+.step-icon {
+    font-size: 48px; /* Placeholder size */
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-m);
+    /* Actual icons will have their own styling */
+}
+
+.step-card h3 {
+    font-family: var(--font-heading);
+    font-size: 20px; /* Adjust as needed */
+    color: var(--text-primary-color);
+    margin-bottom: var(--spacing-s);
+}
+
+.step-card p {
+    font-size: 14px; /* Adjust as needed */
+    color: var(--text-secondary-color);
+    margin-bottom: var(--spacing-m);
+    line-height: 1.5;
+}
+
+.step-illustration {
+    font-size: 12px; /* Placeholder text style */
+    color: #aaa;
+    background-color: #f0f0f0;
+    padding: var(--spacing-l) var(--spacing-m);
+    border-radius: var(--border-radius-cards);
+    min-height: 100px; /* Placeholder height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-container {
+    margin-top: var(--spacing-l);
+    /* text-align: center; is inherited from .how-it-works-section */
+}
+
+/* Features Section Styles */
+.features-section {
+    padding: var(--spacing-xxl) var(--spacing-l); /* e.g., 64px 32px */
+    text-align: center;
+    background-color: var(--background-color);
+}
+
+.features-section h2 {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-primary-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-l); /* e.g., 32px */
+}
+
+.feature-card {
+    background-color: var(--card-color); /* Cards on a different background */
+    padding: var(--spacing-l);
+    border-radius: var(--border-radius-cards);
+    box-shadow: var(--shadow-light);
+    text-align: left; /* Content within card is left-aligned */
+}
+
+.feature-icon {
+    font-size: 36px; /* Placeholder size */
+    color: var(--secondary-color); /* Using secondary color for feature icons */
+    margin-bottom: var(--spacing-m);
+    display: block; /* Ensures it takes its own line if text-align: left on parent */
+}
+
+.feature-card h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--text-primary-color);
+    margin-bottom: var(--spacing-s);
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: var(--text-secondary-color);
+    line-height: 1.5;
+}
+
+/* Dark Theme Overrides */
+body.dark-theme {
+    --background-color: var(--dark-background-color);
+    --card-color: var(--dark-card-color);
+    --text-primary-color: var(--dark-text-primary-color);
+    --text-secondary-color: var(--dark-text-secondary-color);
+    --primary-color: var(--dark-primary-color);
+    --secondary-color: var(--dark-secondary-color);
+    --accent-color: var(--dark-accent-color);
+    --shadow-light: var(--shadow-dark); /* Using the existing --shadow-dark */
+
+    /* Specific overrides for elements that might not directly use a variable
+       or need a different variable mapping for dark theme */
+    --footer-border-color: #424242; /* Example: A specific dark border for footer */
+    --hero-visual-bg: #333333; /* Darker placeholder for hero visual */
+    --step-illustration-bg: #2a2a2a;
+    --step-illustration-text: #888;
+}
+
+/* Ensure elements correctly adapt: */
+/* Most elements should adapt automatically if they use the variables.
+   We need to check specific cases like borders or elements not using variables. */
+
+body.dark-theme .logo {
+    color: var(--dark-primary-color); /* Ensure logo uses the dark theme primary color */
+}
+
+body.dark-theme .login-btn {
+    /* Assuming login-btn uses secondary-color, it will adapt.
+       If it used a hardcoded color, it would need an override here. */
+}
+
+body.dark-theme .register-btn {
+    /* Assuming register-btn uses primary-color, it will adapt. */
+}
+
+body.dark-theme .btn-primary {
+    background-color: var(--dark-primary-color);
+    color: var(--dark-text-primary-color); /* Or #000 or #fff depending on contrast with dark-primary-color */
+}
+
+body.dark-theme .btn-secondary {
+    color: var(--dark-primary-color);
+    border-color: var(--dark-primary-color);
+}
+
+
+body.dark-theme footer {
+    border-top-color: var(--footer-border-color, #424242); /* Use variable or fallback */
+}
+
+body.dark-theme .footer-bottom {
+    border-top-color: var(--footer-border-color, #424242);
+}
+
+/* Modal Base */
+.modal {
+    position: fixed;
+    z-index: 1001; /* Higher than header */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if content is too long */
+    background-color: rgba(0,0,0,0.5); /* Dim background */
+    display: flex; /* Used to center modal-content */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    color: var(--text-primary-color); /* Ensure text color respects theme */
+    margin: auto;
+    padding: var(--spacing-l);
+    border-radius: var(--border-radius-cards);
+    box-shadow: var(--shadow-light); /* Or var(--shadow-dark) for dark theme */
+    width: 90%;
+    max-width: 500px;
+    position: relative; /* For positioning the close button */
+}
+
+/* Dark theme adjustments for modal */
+body.dark-theme .modal-content {
+    background-color: var(--dark-card-color); /* Use card color for dark theme modal bg */
+    color: var(--dark-text-primary-color);
+    box-shadow: var(--shadow-dark);
+}
+
+
+.close-button {
+    color: var(--text-secondary-color);
+    float: right; /* Old school, but simple for a span */
+    font-size: 28px;
+    font-weight: bold;
+}
+body.dark-theme .close-button {
+    color: var(--dark-text-secondary-color);
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--text-primary-color);
+    /* In CSS, you can't directly nest like SASS/LESS for body.dark-theme & */
+    /* This will be handled by a separate rule for dark theme if needed or rely on variable change */
+    text-decoration: none;
+    cursor: pointer;
+}
+body.dark-theme .close-button:hover,
+body.dark-theme .close-button:focus {
+    color: var(--dark-text-primary-color);
+}
+
+
+/* Form Styling inside Modal */
+.modal form label {
+    display: block;
+    margin-top: var(--spacing-s);
+    margin-bottom: var(--spacing-xs);
+    font-weight: bold;
+}
+
+.modal form input[type="email"],
+.modal form input[type="password"],
+.modal form input[type="text"] { /* Add other input types if needed */
+    width: 100%;
+    padding: var(--spacing-s);
+    margin-bottom: var(--spacing-s);
+    border: 1px solid #ccc; /* Adjust border color for themes */
+    border-radius: var(--border-radius-cards); /* Or a smaller radius for inputs */
+    box-sizing: border-box;
+    background-color: var(--background-color); /* Theme aware */
+    color: var(--text-primary-color); /* Theme aware */
+}
+body.dark-theme .modal form input[type="email"],
+body.dark-theme .modal form input[type="password"],
+body.dark-theme .modal form input[type="text"] {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-primary-color);
+    border-color: #555; /* Darker border for dark theme */
+}
+
+
+.modal form input[type="checkbox"] {
+    margin-right: var(--spacing-xs);
+}
+
+.modal form div { /* For checkbox groups */
+    margin-bottom: var(--spacing-s);
+    font-size: 0.9em;
+}
+.modal form div label { /* Labels next to checkboxes */
+    font-weight: normal;
+    display: inline;
+}
+
+
+.modal form button[type="submit"] {
+    width: 100%;
+    padding: var(--spacing-s);
+    margin-top: var(--spacing-m);
+}
+/* .btn-primary style is already defined */
+
+.social-login {
+    text-align: center;
+    margin-top: var(--spacing-m);
+    margin-bottom: var(--spacing-s);
+}
+.social-login p {
+    margin-bottom: var(--spacing-s);
+    font-size: 0.9em;
+}
+.social-btn {
+    width: 100%;
+    padding: var(--spacing-s);
+    margin-bottom: var(--spacing-s);
+    border-radius: var(--border-radius-buttons);
+    border: 1px solid #ccc; /* Adjust for themes */
+    cursor: pointer;
+    font-weight: bold;
+}
+.social-btn.google {
+    background-color: #db4437; /* Example color */
+    color: white;
+}
+.social-btn.facebook {
+    background-color: #3b5998; /* Example color */
+    color: white;
+}
+body.dark-theme .social-btn {
+    border-color: #555;
+}
+
+
+.modal p { /* For links like "Already registered?" */
+    text-align: center;
+    margin-top: var(--spacing-m);
+    font-size: 0.9em;
+}
+.modal p a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+body.dark-theme .modal p a {
+    color: var(--dark-primary-color);
+}
+.modal p a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section span colors in dark theme */
+body.dark-theme .hero-content h1 span:nth-child(1) { color: var(--dark-primary-color); }
+body.dark-theme .hero-content h1 span:nth-child(2) { color: var(--dark-secondary-color); }
+body.dark-theme .hero-content h1 span:nth-child(3) { color: var(--dark-accent-color); }
+
+body.dark-theme .hero-visual {
+    background-color: var(--hero-visual-bg, #333333);
+    color: var(--dark-text-secondary-color);
+}
+
+/* How it works section */
+body.dark-theme .how-it-works-section {
+    background-color: var(--dark-card-color); /* Section itself uses a card-like color in dark */
+}
+
+body.dark-theme .step-card {
+    background-color: var(--dark-background-color); /* Cards on the section bg */
+    box-shadow: var(--shadow-dark);
+}
+
+body.dark-theme .step-icon {
+    color: var(--dark-primary-color);
+}
+
+body.dark-theme .step-illustration {
+    background-color: var(--step-illustration-bg, #2a2a2a);
+    color: var(--step-illustration-text, #888);
+}
+
+/* Features section */
+body.dark-theme .features-section {
+    background-color: var(--dark-background-color);
+}
+
+body.dark-theme .feature-card {
+    background-color: var(--dark-card-color);
+    box-shadow: var(--shadow-dark);
+}
+
+body.dark-theme .feature-icon {
+    color: var(--dark-secondary-color);
+}
+
+
+/* Footer Styles */
+footer {
+    background-color: var(--card-color);
+    color: var(--text-secondary-color);
+    padding: var(--spacing-xl) var(--spacing-l); /* e.g., 48px 32px */
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: var(--spacing-l);
+}
+
+.footer-logo {
+    font-family: var(--font-heading);
+    font-size: var(--spacing-m); /* Slightly smaller than header */
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-s);
+}
+
+.footer-description {
+    max-width: 600px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-l);
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin: var(--spacing-s);
+}
+
+.footer-column h4 {
+    color: var(--text-primary-color);
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-s);
+    font-size: 1.1em;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: var(--text-secondary-color);
+    display: block;
+    padding: var(--spacing-xs) 0; /* 8px 0 */
+    font-size: 0.9em;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-social {
+    text-align: center;
+    margin-bottom: var(--spacing-m);
+}
+
+.footer-social span {
+    margin: 0 var(--spacing-xs); /* 0 8px */
+    cursor: pointer;
+    font-size: 1.2em; /* Placeholder for icon size */
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8em;
+    border-top: 1px solid #e0e0e0;
+    padding-top: var(--spacing-m);
+    margin-top: var(--spacing-l);
+}
+
+.footer-bottom p {
+    margin: 0 0 var(--spacing-xs) 0;
+}

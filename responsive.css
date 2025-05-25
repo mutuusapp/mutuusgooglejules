@@ -1,0 +1,185 @@
+/* responsive.css */
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    /* General body/spacing adjustments for tablet if needed */
+    body {
+        /* Example: Slightly reduce overall padding if main sections have large padding */
+    }
+
+    /* Header */
+    header {
+        padding: var(--spacing-s) var(--spacing-m); /* Adjust padding */
+    }
+    header nav {
+        /* Potentially hide full nav and show hamburger icon placeholder here or in mobile */
+    }
+    .logo {
+        font-size: var(--spacing-l); /* Slightly smaller logo */
+    }
+
+    /* Hero Section */
+    .hero-section {
+        flex-direction: column; /* Stack content and visual */
+        padding: var(--spacing-xl) var(--spacing-m);
+        min-height: auto; /* Adjust min-height */
+    }
+    .hero-content {
+        text-align: center; /* Center text when stacked */
+        margin-right: 0;
+        margin-bottom: var(--spacing-l); /* Space between content and visual */
+        max-width: 100%;
+    }
+    .hero-content h1 {
+        font-size: 40px; /* Adjust font size */
+    }
+    .hero-subheadline {
+        font-size: 16px; /* Adjust font size */
+    }
+    .hero-stats {
+        justify-content: center; /* Center stats items */
+    }
+    .hero-visual {
+        max-width: 80%; /* Or some other appropriate sizing */
+        margin: 0 auto;
+    }
+
+
+    /* How it Works Section (Funktionsübersicht) */
+    .how-it-works-section {
+        padding: var(--spacing-xl) var(--spacing-m);
+    }
+    .how-it-works-section h2 {
+        font-size: 32px;
+    }
+    .steps-container {
+        /* Cards might already wrap well due to flex-wrap and min-width.
+           If using grid, adjust grid-template-columns if needed, e.g., repeat(auto-fit, minmax(260px, 1fr)); */
+    }
+    .step-card {
+         /* max-width: 45%; /* Example if you want two cards side-by-side then wrap */
+    }
+
+
+    /* Features Section */
+    .features-section {
+        padding: var(--spacing-xl) var(--spacing-m);
+    }
+    .features-section h2 {
+        font-size: 32px;
+    }
+    .features-grid {
+        /* Grid will adapt with auto-fit. May need to adjust minmax if cards are too small/large.
+           e.g., grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); */
+    }
+
+    /* Footer */
+    .footer-columns {
+        flex-direction: column;
+        align-items: center; /* Center columns when stacked */
+        text-align: center;
+    }
+    .footer-column {
+        min-width: 100%; /* Each column takes full width */
+        margin: var(--spacing-m) 0;
+    }
+    .footer-top {
+         /* Already stacks and centers, should be fine */
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+    /* Header */
+    header {
+        padding: var(--spacing-s);
+        flex-wrap: wrap; /* Allow items to wrap if too crowded */
+    }
+    header nav {
+        display: none; /* Hide main navigation links */
+    }
+    .auth-buttons {
+        /* Decide if auth buttons should also be hidden in hamburger or remain visible */
+        /* For now, let's assume they remain for quick access */
+        margin-top: var(--spacing-xs); /* If header wraps */
+        margin-left: 0; /* Reset margin if they are first in a new row */
+    }
+    /* Add a placeholder for hamburger menu icon if not already there,
+       or style an existing one to be visible only on mobile.
+       This subtask is for layout, not full hamburger functionality. */
+    .hamburger-icon-placeholder { /* Create this div in HTML if needed */
+        display: block !important; /* Show on mobile, !important to override inline style */
+        /* Style it: font size, cursor, etc. */
+        font-size: 24px;
+        cursor: pointer;
+        order: -1; /* If you want it on the far left, before logo */
+    }
+
+
+    /* Hero Section */
+    .hero-section {
+        padding: var(--spacing-l) var(--spacing-s);
+    }
+    .hero-content h1 {
+        font-size: 32px; /* Further reduce font size */
+    }
+    .hero-subheadline {
+        font-size: 15px;
+    }
+    .hero-stats {
+        flex-direction: column; /* Stack stat items */
+        align-items: center;
+    }
+    .stat-item {
+        margin: var(--spacing-xs) 0;
+    }
+    .hero-cta-buttons {
+        display: flex;
+        flex-direction: column; /* Stack CTA buttons */
+    }
+    .hero-cta-buttons button {
+        width: 100%; /* Make buttons full width */
+        margin: var(--spacing-xs) 0;
+    }
+    .hero-visual {
+        max-width: 100%;
+    }
+
+
+    /* How it Works Section (Funktionsübersicht) */
+    .how-it-works-section {
+        padding: var(--spacing-l) var(--spacing-s);
+    }
+    .how-it-works-section h2 {
+        font-size: 28px;
+    }
+    .steps-container {
+        flex-direction: column; /* Stack step cards */
+        gap: var(--spacing-m);
+    }
+    .step-card {
+        max-width: 100%; /* Allow cards to take full width */
+        /* min-width can be removed or set to a smaller value like 90% */
+    }
+
+    /* Features Section */
+    .features-section {
+        padding: var(--spacing-l) var(--spacing-s);
+    }
+    .features-section h2 {
+        font-size: 28px;
+    }
+    .features-grid {
+        grid-template-columns: 1fr; /* Single column for feature cards */
+        gap: var(--spacing-m);
+    }
+
+    /* Footer */
+    /* .footer-columns already stacked and centered from tablet styles */
+    /* .footer-column already full width from tablet styles */
+    .footer-social span {
+        margin: 0 var(--spacing-xs); /* Reduce spacing for social icons if needed */
+    }
+    .footer-description, .footer-bottom p {
+        font-size: 0.85em; /* Adjust if text is too small */
+    }
+}
